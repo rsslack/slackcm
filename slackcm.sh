@@ -35,7 +35,8 @@ slackcm_base()
     source $slackcm_root/lib/functions.bash
 
     #Obtain server type
-    service_type=`cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
+    
+    service_type=`/bin/cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
   
     #Include service_type vars
     source $slackcm_root/service_type/$service_type/$service_type.bash
@@ -50,7 +51,7 @@ slackcm_base()
             slackcm_cron
         ;;
         deploy)
-            deploy_repo
+            slackcm_cron
         ;;
     esac
     

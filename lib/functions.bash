@@ -23,7 +23,7 @@ service_files_sync()
     fi 
 }
 
-
+#Sync service config
 service_config_sync()
 {
     if [[ $service_copy_config = 1 ]]; then
@@ -57,8 +57,17 @@ service_config_sync()
     fi 
 }
 
+#Enable slackcm cron
 slackcm_cron()
 {
     #Copy slackcm cron
     /usr/bin/rsync -av -qq --no-perms $slackcm_root/slackcm_files/slackcm-cron $slackcm_cron_file
+}
+
+#Deploy slackcm to remote host
+deploy_repo()
+{
+    #clone repo and run slackcm
+    ssh -t root@$host "apt-get install $slackcm_pkgs -y -qq; git clone $slackcm_repo $slackcm_root; $slackcm_root/slackcm.sh run"
+    
 }

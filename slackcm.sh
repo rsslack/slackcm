@@ -7,13 +7,15 @@ version=1.0
 slackcm_root=/opt/slackcm
 slackcm_pkgs=git
 slackcm_cron_file=/etc/init.d/slackcm
+slackcm_repo="https://github.com/rsslack/slackcm.git"
+host=$2
 
 
 if [[ -z $1 ]]; then
     echo  "Version: $version"
     echo  "Usage:"
     echo  "run -- run slackcm on localhost"
-    echo  "deploy <hostname/ip> (ssh_username) -- run slackcm on a remote host. ssh_username is optional (default user is root)."
+    echo  "deploy <hostname/ip> -- run slackcm on a remote host."
     echo -e "\nExamples:"
     echo  "$0 run"
     echo  "$0 deploy 50.16.108.76"
@@ -33,13 +35,11 @@ slackcm_base()
     source $slackcm_root/lib/functions.bash
 
     #Obtain server type
-    service_type=`cat hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
+    service_type=`cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
   
     #Include service_type vars
     source $slackcm_root/service_type/$service_type/$service_type.bash
     
-    echo $service_type
-
     #Define actions
     case $1 in 
         run)
@@ -57,4 +57,4 @@ slackcm_base()
 
 }
 
-slackcm_base $1
+slackcm_base $1 $2

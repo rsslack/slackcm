@@ -38,13 +38,13 @@ slackcm_sync_config()
                 echo "The config is different from the repo. Copying $server_type config."
                 /usr/bin/rsync -a --no-perms $slackcm_root/server_type/$server_type/config/$server_type_config $server_type_config_dir
                 restart_app=1
-                echo -e "$server_type config copy complete."
+                echo "$server_type config copy complete."
              fi
         else
                 echo "The config doesn't exist on the server. Copying $server_type config."
                 /usr/bin/rsync -a --no-perms $slackcm_root/server_type/$server_type/config/$server_type_config $server_type_config_dir
                 restart_app=1
-                echo -e "$server_type config copy complete."
+                echo "$server_type config copy complete."
         fi 
         if [[ $service_auto_restart = 1 ]] && [[ $restart_app = 1 ]]; then
             #Automatically restart the service
@@ -59,8 +59,6 @@ slackcm_sync_config()
 
 slackcm_cron()
 {
-
-    #Verify slackcm cron exists
-    
-
+    #Copy slackcm cron
+    /usr/bin/rsync -av -qq --no-perms $slackcm_root/slackcm_files/slackcm-cron $slackcm_cron_file
 }

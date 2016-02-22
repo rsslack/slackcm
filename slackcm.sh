@@ -6,6 +6,7 @@
 version=1.0
 slackcm_root=/opt/slackcm
 slackcm_pkgs=git
+slackcm_cron_file=/etc/init.d/slackcm
 
 
 if [[ -z $1 ]]; then
@@ -45,7 +46,8 @@ slackcm_base()
             #git commands
             slackcm_server_type_installs
             slackcm_sync_files
-            slackcm_sync_config
+            slackcm_sync_config   
+            slackcm_cron
         ;;
         deploy)
             slackcm_sync

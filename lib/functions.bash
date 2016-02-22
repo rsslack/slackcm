@@ -62,7 +62,7 @@ slackcm_cron()
 {
     #Copy slackcm cron
     if [[ ! -z $host ]]; then
-        /usr/bin/rsync -av -qq $slackcm_root/slackcm_files/slackcm-cron $host/$slackcm_cron_file
+        /usr/bin/rsync -av  $slackcm_root/slackcm_files/slackcm-cron root@$host:/$slackcm_cron_file
     else
         /usr/bin/rsync -av -qq --no-perms $slackcm_root/slackcm_files/slackcm-cron $slackcm_cron_file
     fi

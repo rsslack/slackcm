@@ -6,7 +6,7 @@
 version=1.0
 slackcm_root=/opt/slackcm
 slackcm_pkgs=git
-slackcm_cron_file=/etc/init.d/slackcm
+slackcm_cron_file=/etc/cron.d/slackcm
 slackcm_repo="https://github.com/rsslack/slackcm.git"
 host=$2
 
@@ -51,7 +51,9 @@ slackcm_base()
             slackcm_cron
         ;;
         deploy)
+            deploy_repo
             slackcm_cron
+
         ;;
     esac
     

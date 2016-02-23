@@ -8,9 +8,9 @@ slackcm_repo()
 {
     if [[ -d $slackcm_root ]]; then
         #verify repo
-        current_repo=`git -C $slackcm_root remote show -n origin | grep Fetch | awk '{print $3'`
+        current_repo=`git -C $slackcm_root remote show -n origin | grep Fetch | awk '{print $3}'`
         
-        if [[ $repo = $current_repo]]; then
+        if [[ $repo = $current_repo ]]; then
             echo "Cleaning out anything not in the repo"
             git -C $slackcm_root clean -fd
             git -C $slackcm_root checkout .

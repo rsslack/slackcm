@@ -24,19 +24,20 @@ fi
 slackcm_base()
 {
     echo $date
-    echo -e "\nVersion: $version"
+    echo -e "Version: $version\n"
 
+    #Install base packages for slackcm to run
     echo "Installing base packages for slackcm: $slackcm_pkgs"
     apt-get install $slackcm_pkgs -y -qq
     echo -e "slackcm packages installed.\n"
     
-    #include slackcm_functions
+    #Include slackcm_functions
     source $slackcm_root/lib/functions.bash
 
     #Obtain server type
-    
     service_type=`/bin/cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
     
+    #Check if service_type exists, if not exit
     if [[ -z $service_type ]]; then
         echo "$2 does not exist in the hosts.bash file. Please add the host to the file in order to proceed."
         exit
@@ -60,7 +61,7 @@ slackcm_base()
                 echo -e "\n\nslackcm run complete on $host\n"
             fi
         ;;
-        #Add additional verbs
+        #Add additional actions
     esac
 }
 

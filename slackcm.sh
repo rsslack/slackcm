@@ -58,9 +58,10 @@ slackcm_base()
         deploy)
             deploy_repo $2
             slackcm_cron
-
         ;;
     esac
+    
+    echo -e "\n\nslackcm run complete.\n"
     
 
 }

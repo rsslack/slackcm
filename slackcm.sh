@@ -14,11 +14,10 @@ host=$2
 if [[ -z $1 ]]; then
     echo  "Version: $version"
     echo  "Usage:"
-    echo  "run -- run slackcm on localhost"
-    echo  "deploy <hostname/ip> -- run slackcm on a remote host."
+    echo  "run <hostname/ip> -- run slackcm on localhost. hostname/ip should only be specified if you want to run slackcm onremote host."
     echo -e "\nExamples:"
     echo  "$0 run"
-    echo  "$0 deploy 50.16.108.76"
+    echo  "$0 run 50.16.108.76"
     exit 1
 fi
 

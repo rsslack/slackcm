@@ -23,7 +23,7 @@ fi
 
 slackcm_base()
 {
-    echo "Version: $version"
+    echo -e "\nVersion: $version"
 
     echo "Installing base packages for slackcm: $slackcm_pkgs"
     apt-get install $slackcm_pkgs -y -qq

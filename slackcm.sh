@@ -56,7 +56,7 @@ slackcm_base()
             slackcm_cron
         ;;
         deploy)
-            deploy_repo
+            deploy_repo $2
             slackcm_cron
 
         ;;

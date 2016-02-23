@@ -15,7 +15,7 @@ slackcm_repo()
             git -C $slackcm_root clean -fd
             git -C $slackcm_root checkout .
             git -C $slackcm_root fetch origin
-            echo "slackcm updated"
+            echo "slackcm updated from repo."
         else
             echo "The repo in $slackcm_root is incorrect. The $slackcm_root needs to be fixed before proceeding."
             exit

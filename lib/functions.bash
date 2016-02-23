@@ -92,7 +92,7 @@ deploy_repo()
 {
      echo "Copy slackcm repo to $host"
      /usr/bin/rsync -av -qq $slackcm_root root@host:$slackcm_root
-     echo "Run slackcm_root"
-     ssh -t root@$host "/opt/slackcm/slackcm.sh run"
+     echo "Run slackcm on $2"
+     ssh -t root@$2 "/opt/slackcm/slackcm.sh run"
  
 }    

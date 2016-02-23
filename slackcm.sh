@@ -48,7 +48,7 @@ slackcm_base()
     #Define actions
     case $1 in 
         run)
-            if [[ ! -z $host ]] ; then
+            if [[ -z $host ]] ; then
                 slackcm_repo
                 service_pkgs_installs
                 service_files_sync

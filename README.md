@@ -14,7 +14,7 @@ Deploying to slackcm to a server
 2) Run slackcm on:
     
     a) localhost 
-    ```./slackcm.sh run```
+    `./slackcm.sh run`
     
     b) Remote host (host must be added to hosts.bash)
-    ```./slackcm.sh deploy <hostname>```
+    `./slackcm.sh deploy <hostname>`

@@ -2,4 +2,4 @@
 
 # slackcm
 PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
-*/5 * * * * root /opt/slackcm/slackcm.sh run > /dev/null 2>&1
+*/5 * * * * root /opt/slackcm/slackcm.sh run > /var/log/slackcm.log 2>&1

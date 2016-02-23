@@ -1,0 +1,4 @@
+- Make script more efficient
+- Add support for multi service types
+- Add feature branch testing
+- Add better logging

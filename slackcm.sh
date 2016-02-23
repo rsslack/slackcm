@@ -3,16 +3,16 @@
 #Slack Configuration Management Tool
 
 #slackcm vars
-version=1.0
+host=$2
+repo="https://github.com/rsslack/slackcm.git"
 slackcm_root=/opt/slackcm
 slackcm_pkgs=git
 slackcm_cron_file=/etc/cron.d/slackcm
-repo="https://github.com/rsslack/slackcm.git"
-host=$2
+version=1.0
+date="$(date +'%Y-%m-%d_%H:%M:%S')"
 
 
 if [[ -z $1 ]]; then
-    echo  "Version: $version"
     echo  "Usage:"
     echo  "run <hostname/ip> -- run slackcm on localhost. hostname/ip should only be specified if you want to run slackcm onremote host."
     echo -e "\nExamples:"
@@ -23,6 +23,8 @@ fi
 
 slackcm_base()
 {
+    $date
+    echo  "Version: $version"
     echo -e "\nVersion: $version"
 
     echo "Installing base packages for slackcm: $slackcm_pkgs"

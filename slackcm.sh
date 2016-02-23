@@ -23,7 +23,7 @@ fi
 
 slackcm_base()
 {
-    $date
+    echo $date
     echo  "Version: $version"
     echo -e "\nVersion: $version"
 

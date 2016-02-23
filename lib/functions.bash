@@ -90,9 +90,9 @@ slackcm_cron()
 
 deploy_repo()
 {
-     #clone repo and run slackcm
-     #typeset -f service_pkgs_installs
-     #ssh -t root@$host "$(cat); service_pkgs_installs"
-     ssh -t root@$host "$(typeset -f); $service_pkgs_installs; bash /opt/slackcm/slackcm.sh run"
+     echo "Copy slackcm repo to $host"
+     /usr/bin/rsync -av -qq $slackcm_root root@host:$slackcm_root
+     echo "Run slackcm_root"
+     ssh -t root@$host "/opt/slackcm/slackcm.sh run"
  
 }    

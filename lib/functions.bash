@@ -15,13 +15,13 @@ slackcm_repo()
             git -C $slackcm_root clean -fd
             git -C $slackcm_root checkout .
             git -C $slackcm_root fetch origin
-            echo "slackcm updated from repo."
+            echo "slackcm updated from repo.\n"
         else
-            echo "The repo in $slackcm_root is incorrect. The $slackcm_root needs to be fixed before proceeding."
+            echo "The repo in $slackcm_root is incorrect. The $slackcm_root needs to be fixed before proceeding.\n"
             exit
         fi
     else
-        echo "slackcm doesn't exist. Cloning repo..."
+        echo "slackcm doesn't exist. Cloning repo...\n"
         git -C $slackcm_root clone
     fi
 }

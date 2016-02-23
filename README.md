@@ -11,7 +11,7 @@ Deploying to slackcm to a server
 
 2) Ensure server class exists in service\_class dir and the host has been added to `hosts.bash`. Use hw_app as a template.
 
-2) Run slackcm on:
+3) Run slackcm on:
 
 localhost: `./slackcm.sh run`
     

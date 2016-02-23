@@ -7,7 +7,7 @@ version=1.0
 slackcm_root=/opt/slackcm
 slackcm_pkgs=git
 slackcm_cron_file=/etc/cron.d/slackcm
-slackcm_repo="https://github.com/rsslack/slackcm.git"
+repo="https://github.com/rsslack/slackcm.git"
 host=$2
 
 
@@ -37,6 +37,11 @@ slackcm_base()
     #Obtain server type
     
     service_type=`/bin/cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
+    
+    if [[ -z $service_type ]]; then
+        echo "$2 does not exist in the hosts.bash file. Please add the host to the file in order to proceed."
+        exit
+    fi
   
     #Include service_type vars
     source $slackcm_root/service_type/$service_type/$service_type.bash
@@ -44,7 +49,7 @@ slackcm_base()
     #Define actions
     case $1 in 
         run)
-            #git commands
+            slackcm_repo
             service_pkgs_installs
             service_files_sync
             service_config_sync  

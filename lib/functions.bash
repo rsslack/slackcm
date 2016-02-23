@@ -3,6 +3,30 @@
 #Defined functions for slackcm
 
 
+#Verify slackcm repo
+slackcm_repo()
+{
+    if [[ -d $slackcm_root ]]; then
+        #verify repo
+        current_repo=`git -C $slackcm_root remote show -n origin | grep Fetch | awk '{print $3'`
+        
+        if [[ $repo = $current_repo]]; then
+            echo "Cleaning out anything not in the repo"
+            git -C $slackcm_root clean -fd
+            git -C $slackcm_root checkout .
+            git -C $slackcm_root fetch origin
+            echo "slackcm updated"
+        else
+            echo "The repo in $slackcm_root is incorrect. The $slackcm_root needs to be fixed before proceeding."
+            exit
+        fi
+    else
+        echo "slackcm doesn't exist. Cloning repo..."
+        git -C $slackcm_root clone
+    fi
+}
+
+
 #Install service packages
 service_pkgs_installs()
 {
@@ -61,16 +85,14 @@ service_config_sync()
 slackcm_cron()
 {
     #Copy slackcm cron
-    if [[ ! -z $host ]]; then
-        /usr/bin/rsync -av  $slackcm_root/slackcm_files/slackcm-cron root@$host:/$slackcm_cron_file
-    else
         /usr/bin/rsync -av -qq --no-perms $slackcm_root/slackcm_files/slackcm-cron $slackcm_cron_file
-    fi
 }
 
 deploy_repo()
- {
+{
      #clone repo and run slackcm
-     ssh -t root@$host "apt-get install $slackcm_pkgs -y -qq; git clone $slackcm_repo $slackcm_root"
+     #typeset -f service_pkgs_installs
+     #ssh -t root@$host "$(cat); service_pkgs_installs"
+     ssh -t root@$host "$(typeset -f); $service_pkgs_installs; bash /opt/slackcm/slackcm.sh run"
  
 }    

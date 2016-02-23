@@ -28,7 +28,7 @@ slackcm_base()
 
     echo "Installing base packages for slackcm: $slackcm_pkgs"
     apt-get install $slackcm_pkgs -y -qq
-    echo "slackcm packages installed."
+    echo -e "slackcm packages installed.\n"
     
     #include slackcm_functions
     source $slackcm_root/lib/functions.bash

@@ -26,10 +26,9 @@ slackcm_base()
 {
     echo "Version: $version"
 
-    echo "Installing base packages: $slackcm_pkgs"
-    #apt-get update -qq
+    echo "Installing base packages for slackcm: $slackcm_pkgs"
     apt-get install $slackcm_pkgs -y -qq
-    echo "Packages installed."
+    echo "slackcm packages installed."
     
     #include slackcm_functions
     source $slackcm_root/lib/functions.bash
@@ -49,21 +48,20 @@ slackcm_base()
     #Define actions
     case $1 in 
         run)
-            slackcm_repo
-            service_pkgs_installs
-            service_files_sync
-            service_config_sync  
-            slackcm_cron
+            if [[ ! -z $host ]] ; then
+                slackcm_repo
+                service_pkgs_installs
+                service_files_sync
+                service_config_sync  
+                slackcm_cron
+                echo -e "\n\nslackcm run complete.\n"
+            else
+                deploy_repo $host
+                echo -e "\n\nslackcm run complete on $host\n"
+            fi
         ;;
-        deploy)
-            deploy_repo $2
-            slackcm_cron
-        ;;
+        #Add additional verbs
     esac
-    
-    echo -e "\n\nslackcm run complete.\n"
-    
-
 }
 
 slackcm_base $1 $2

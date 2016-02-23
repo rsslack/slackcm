@@ -85,7 +85,7 @@ service_config_sync()
 slackcm_cron()
 {
     #Copy slackcm cron
-        /usr/bin/rsync -av -qq --no-perms $slackcm_root/slackcm_files/slackcm-cron $slackcm_cron_file
+    /usr/bin/rsync -av -qq --no-perms $slackcm_root/slackcm_files/slackcm-cron $slackcm_cron_file
 }
 
 deploy_repo()
@@ -94,5 +94,4 @@ deploy_repo()
      /usr/bin/rsync -av -qq $slackcm_root root@$host:/opt/
      echo -e "\nRun slackcm_root on $host"
      ssh -t root@$host "/opt/slackcm/slackcm.sh run"
- 
 }    

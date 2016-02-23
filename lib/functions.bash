@@ -90,9 +90,9 @@ slackcm_cron()
 
 deploy_repo()
 {
-     echo "Copy slackcm repo to $host"
+     echo -e "\nCopy slackcm repo to $host"
      /usr/bin/rsync -av -qq $slackcm_root root@$host:/opt/
-     echo "Run slackcm_root"
+     echo -e "\nRun slackcm_root on $host"
      ssh -t root@$host "/opt/slackcm/slackcm.sh run"
  
 }    

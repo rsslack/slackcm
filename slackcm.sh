@@ -35,25 +35,29 @@ slackcm_base()
     source $slackcm_root/lib/functions.bash
 
     #Obtain server type
-    service_type=`/bin/cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
+    service=`/bin/cat $slackcm_root/hosts.bash | grep $HOSTNAME | cut -d'=' -f1`
     
-    #Check if service_type exists, if not exit
-    if [[ -z $service_type ]]; then
+    #Check if service exists, if not exit
+    if [[ -z $service ]]; then
         echo "$2 does not exist in the hosts.bash file. Please add the host to the file in order to proceed."
         exit
     fi
   
-    #Include service_type vars
-    source $slackcm_root/service_type/$service_type/$service_type.bash
     
     #Define actions
     case $1 in 
         run)
             if [[ -z $host ]] ; then
                 slackcm_repo
-                service_pkgs_installs
-                service_files_sync
-                service_config_sync  
+                #Run base and $service services
+                for service_type in base $service; do
+                    #Include service_type vars
+                    source $slackcm_root/service_type/$service_type/$service_type.bash
+                 
+                    service_pkgs_installs
+                    service_files_sync
+                    service_config_sync  
+                done
                 slackcm_cron
                 echo -e "\n\nslackcm run complete.\n"
             else

@@ -53,8 +53,9 @@ slackcm_base()
                 for service_type in base $service; do
                     #Include service_type vars
                     source $slackcm_root/service_type/$service_type/$service_type.bash
-                 
                     service_pkgs_installs
+                    #Run custom service functions if they are defined
+		    [[ $run_service_function = 1 ]] && service_function
                     service_files_sync
                     service_config_sync  
                 done

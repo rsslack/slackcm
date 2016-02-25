@@ -9,3 +9,4 @@ service_config_dir=/etc/nginx/sites-enabled
 service_config=default
 service_auto_restart=1
 service_name=nginx
+run_service_function=0
